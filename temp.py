@@ -32,7 +32,7 @@ def tempread(lines):
 
 @app.route('/') 
 def index():
-	return render_template('sock.html')
+	return render_template('temp.html')
 
 @socketio.on('message')
 def handleMessage(msg):
