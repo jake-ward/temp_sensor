@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Temp Sensor</title>
+	
+	<!--Javascript for flask-socketio-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+$(document).ready(function() {
+	var socket = io.connect('http://192.168.0.34:8181');
+
+	socket.on('connect', function() {
+		console.log('Connection Established!');
+		socket.send('User has connected!');
+	});
+
+	socket.on('message', function(msg) {		
+		console.log('Received message');
+		socket.send($('#messages'));
+		document.getElementById("messages").innerHTML = msg;
+	});
+});
+</script>
+
+	<h1>Hello World!</h1>
+	<p id = "messages"></p>
+
+</body>
+</html>
